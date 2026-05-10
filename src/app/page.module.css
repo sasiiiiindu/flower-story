@@ -4,67 +4,87 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 2rem;
+  padding: 2rem 0;
   overflow: hidden;
   position: relative;
 }
 
 .scene {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 800px;
+  width: 100vw;
   height: 300px;
   position: relative;
   margin-bottom: 2rem;
+}
+
+.camera {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200vw;
+  height: 100%;
+  transition: transform 4s ease-in-out;
+  transform: translateX(0);
+}
+
+.camera.riding {
+  transform: translateX(-100vw);
 }
 
 .bikeWrapper {
   position: absolute;
   width: 250px;
   height: 150px;
-  transition: transform 2s ease-in-out;
+  top: 50%;
+  margin-top: -75px;
+  left: 20vw;
+  transform: translateX(-50%);
+  transition: all 4s ease-in-out;
   cursor: pointer;
   z-index: 10;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .bikeWrapper.riding {
-  transform: translateX(-150%);
+  left: 150vw;
+  transform: translateX(-260px); /* 10px gap from shop */
   cursor: default;
+}
+
+@keyframes spinWheel {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(1080deg); }
+}
+
+.bikeWrapper.riding :global(.wheel) {
+  animation: spinWheel 4s ease-in-out forwards;
 }
 
 .shopWrapper {
   position: absolute;
   width: 250px;
   height: 250px;
-  right: -300px; /* Hidden offscreen */
-  transition: transform 2s ease-in-out;
+  top: 50%;
+  margin-top: -125px;
+  left: 150vw;
+  transform: translateX(10px);
   cursor: pointer;
   z-index: 5;
 }
 
-.shopWrapper.visible {
-  transform: translateX(-400px); /* Move into view */
-}
-
-/* On smaller screens adjust positions */
 @media (max-width: 600px) {
-  .bikeWrapper.riding {
-    transform: translateX(-100%);
+  .bikeWrapper {
+    width: 180px;
+    height: 108px;
+    margin-top: -54px;
+    left: 30vw;
   }
-  .shopWrapper.visible {
-    transform: translateX(-200px);
+  .bikeWrapper.riding {
+    left: 150vw;
+    transform: translateX(-190px);
   }
   .shopWrapper {
-    width: 200px;
-    height: 200px;
-  }
-  .bikeWrapper {
-    width: 200px;
-    height: 120px;
+    width: 180px;
+    height: 180px;
+    margin-top: -90px;
   }
 }
 
@@ -90,7 +110,13 @@
   transition: opacity 0.5s ease;
 }
 
-.sparkles {
-  color: #f6d365;
-  margin: 0 0.5rem;
+@keyframes fadeInText {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
+
+.fadeIn {
+  animation: fadeInText 0.5s ease-out forwards;
+}
+
+

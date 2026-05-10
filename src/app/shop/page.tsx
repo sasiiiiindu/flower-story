@@ -32,7 +32,7 @@ export default function Shop() {
         <div>
           <div className={styles.row}>
             {row1.map((flower, idx) => (
-              <FlowerBouquet key={idx} color={flower.color} name={flower.name} />
+              <FlowerBouquet key={idx} color={flower.color} name={flower.name} delay={300 + idx * 200} />
             ))}
           </div>
           <div className={styles.shelf}></div>
@@ -41,7 +41,7 @@ export default function Shop() {
         <div>
           <div className={styles.row}>
             {row2.map((flower, idx) => (
-              <FlowerBouquet key={idx} color={flower.color} name={flower.name} />
+              <FlowerBouquet key={idx} color={flower.color} name={flower.name} delay={300 + (row1.length + idx) * 200} />
             ))}
           </div>
           <div className={styles.shelf}></div>
@@ -50,7 +50,7 @@ export default function Shop() {
         <div>
           <div className={styles.row}>
             {row3.map((flower, idx) => (
-              <FlowerBouquet key={idx} color={flower.color} name={flower.name} />
+              <FlowerBouquet key={idx} color={flower.color} name={flower.name} delay={300 + (row1.length + row2.length + idx) * 200} />
             ))}
           </div>
           <div className={styles.shelf}></div>

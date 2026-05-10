@@ -4,11 +4,15 @@ import styles from './FlowerBouquet.module.css';
 type FlowerProps = {
   color: string;
   name: string;
+  delay?: number;
 };
 
-export default function FlowerBouquet({ color, name }: FlowerProps) {
+export default function FlowerBouquet({ color, name, delay = 0 }: FlowerProps) {
   return (
-    <div className={styles.bouquetContainer}>
+    <div 
+      className={styles.bouquetContainer} 
+      style={{ animationDelay: `${delay}ms` }}
+    >
       <svg viewBox="0 0 100 120" className={styles.bouquetSvg} fill="none" stroke="currentColor">
         {/* Pot/Vase */}
         <path d="M20 80 L80 80 L70 110 L30 110 Z" fill="#e8ddd4" stroke="#d5c0b0" strokeWidth="2" />
